@@ -86,7 +86,7 @@
   });
 </script>
 
-<div class="h-1/2 border border-gray-200 rounded-xl shadow-md pb-3">
+<div class="border border-gray-200 rounded-xl shadow-md">
   <h1 class=" m-4 font-inter text-[16px] font-semibold leading-6 text-left">
     Map View
   </h1>
@@ -96,6 +96,7 @@
 <style>
   #map {
     width: 100%;
-    height: 100%;
+    height: 355px;
+    border-radius: 12px;
   }
 </style>
