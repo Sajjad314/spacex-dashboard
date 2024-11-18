@@ -21,7 +21,7 @@
     status: string;
   }[] = [];
 
-  if (landingData.length > 0) {
+  if (landingData && landingData.length > 0) {
     for (let i = 0; i < landingData.length; i++) {
       locations.push({
         name: landingData[i].full_name,

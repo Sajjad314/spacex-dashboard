@@ -28,11 +28,13 @@
   let successRate: number[] = [];
   let labl: string[] = [];
 
-  for (let i = 0; i < landingData.length; i++) {
+  if(landingData && landingData.length>0){
+    for (let i = 0; i < landingData.length; i++) {
     successRate.push(
       Number(landingData[i].landing_successes / landingData[i].landing_attempts).toFixed(2) * 100
     );
     labl.push(landingData[i].full_name);
+  }
   }
 
   const options = {

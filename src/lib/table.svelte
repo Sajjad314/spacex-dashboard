@@ -4,11 +4,13 @@
   import Dropdown from "./dropdown.svelte";
   import Datatable from "../components/datatable.svelte";
   import { onMount } from "svelte";
+  import Gridview from "../components/gridview.svelte";
   import type { LandpadResponse } from "../interface/LandpadResponse";
   let error = "";
   let viewMode = "list";
 
-  export let landingData: LandpadResponse[] = [];
+  let {landingData, setSelectedVal} : {landingData: LandpadResponse[];setSelectedVal:Function} = $props();
+
 
   function setView(mode: string) {
     viewMode = mode;
@@ -22,7 +24,7 @@
       <button
         class="p-2 cursor-pointer"
         class:bg-gray-300={viewMode === "list"}
-        on:click={() => setView("list")}
+        onclick={() => setView("list")}
       >
         <svg
           class="w-6 h-6 text-black dark:text-white"
@@ -47,7 +49,7 @@
       <button
         class="p-2 cursor-pointer"
         class:bg-gray-300={viewMode === "grid"}
-        on:click={() => setView("grid")}
+        onclick={() => setView("grid")}
       >
         <svg
           class="w-6 h-6 text-black dark:text-white"
@@ -68,6 +70,7 @@
       </button>
     </div>
     <div>
+      <button onclick={()=>setSelectedVal()}>lll</button>
       <Dropdown />
     </div>
   </div>
@@ -78,8 +81,7 @@
     {#if viewMode === "list"}
       <Datatable landingZones={landingData} />
     {:else}
-      <!-- <GridComponent landingZones={landingData} /> -->
-       <h1>data</h1>
+      <Gridview landingZones={landingData}/>
     {/if}
   {/if}
 </div>
