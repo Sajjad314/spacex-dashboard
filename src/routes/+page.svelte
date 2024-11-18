@@ -3,6 +3,7 @@
   import Table from "$lib/table.svelte";
   import "./index.css";
   import type { LandpadResponse } from '../interface/LandpadResponse';
+  import Map from "../components/map.svelte";
 
   export let data: { landingData: LandpadResponse[] }; 
   const landingData = data.landingData;
@@ -10,11 +11,12 @@
 </script>
 
 <Title />
-<div class="flex gap-x-10 mx-24">
+<div class="flex gap-x-10 mx-24 h-auto">
   <div class="w-2/3">
     <Table {landingData} />
   </div>
-  <div class="w-1/3 bg-blue-400 p-4 h-96">
-    <!-- Other components can be placed here and receive the same data if needed -->
+  <div class="w-1/3 flex flex-col gap-5">
+    <Map landingData={landingData}/>
+    <!-- <div class="h-1/2 bg-blue-300"></div> -->
   </div>
 </div>
