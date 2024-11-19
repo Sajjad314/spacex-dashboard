@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { ButtonGroup, Button } from "flowbite-svelte";
-  import { ListOutline } from "flowbite-svelte-icons";
   import Dropdown from "./dropdown.svelte";
   import Datatable from "../components/datatable.svelte";
-  import { onMount } from "svelte";
   import Gridview from "../components/gridview.svelte";
   import type { LandpadResponse } from "../../interface/LandpadResponse";
   let error = "";

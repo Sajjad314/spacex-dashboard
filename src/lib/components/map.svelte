@@ -22,7 +22,6 @@
   let map: Map;
   let vectorSource: VectorSource;
 
-  // Reactive block to update locations whenever landingData changes
   $effect(() => {
     if (landingData && landingData.length > 0) {
       locations = landingData.map((item) => ({
@@ -32,16 +31,14 @@
         status: item.status,
       }));
 
-      // If vectorSource is initialized, update the map
       if (vectorSource) {
         updateFeatures();
       }
     }
   });
 
-  // Function to update features on the map
   function updateFeatures() {
-    vectorSource.clear(); // Clear existing features
+    vectorSource.clear();
 
     locations.forEach((loc) => {
       const feature = new Feature({
@@ -67,23 +64,19 @@
       vectorSource.addFeature(feature);
     });
 
-    // Adjust the view based on the number of locations
     const extent = vectorSource.getExtent();
-    if (!extent.every((value) => isFinite(value))) return; // Avoid errors for empty extent
+    if (!extent.every((value) => isFinite(value))) return; 
 
     if (locations.length === 1) {
-      // Center the map on the single location and set a reasonable zoom level
       const [lon, lat] = [locations[0].longitude, locations[0].latitude];
       map.getView().setCenter(fromLonLat([lon, lat]));
-      map.getView().setZoom(10); // Adjust zoom level as needed
+      map.getView().setZoom(10);
     } else {
-      // Fit the map view to show all locations within bounds
       map.getView().fit(extent, { padding: [50, 50, 50, 50] });
     }
   }
 
   onMount(() => {
-    // Initialize vector source and map
     vectorSource = new VectorSource();
 
     map = new Map({
@@ -97,13 +90,12 @@
         }),
       ],
       view: new View({
-        center: fromLonLat([0, 0]), // Default center
-        zoom: 2, // Default zoom
+        center: fromLonLat([0, 0]),
+        zoom: 2,
       }),
       controls: [],
     });
 
-    // Initial feature update
     updateFeatures();
   });
 </script>

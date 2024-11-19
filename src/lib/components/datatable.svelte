@@ -45,7 +45,6 @@
   });
 </script>
 
-<!-- Table Section with Responsive Width -->
 <Table class="border border-gray-200 rounded-lg max-w-full">
   <TableHead class="bg-gray-50 text-gray-500">
     <TableHeadCell>FULL NAME</TableHeadCell>

@@ -148,7 +148,6 @@
         colors.push(getRandomHexColor());
       }
     }
-    console.log(labl,colors);
     
     options = {
       series: successRate,
