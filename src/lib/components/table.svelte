@@ -3,11 +3,20 @@
   import Datatable from "../components/datatable.svelte";
   import Gridview from "../components/gridview.svelte";
   import type { LandpadResponse } from "../../interface/LandpadResponse";
+  import { Alert } from "flowbite-svelte";
+  import { InfoCircleSolid } from "flowbite-svelte-icons";
   let error = "";
   let viewMode = $state("list");
 
-  let {landingData,selectedVal, onSetSelectedValue} : {landingData: LandpadResponse[];selectedVal:string;onSetSelectedValue:Function} = $props();
-
+  let {
+    landingData,
+    selectedVal,
+    onSetSelectedValue,
+  }: {
+    landingData: LandpadResponse[];
+    selectedVal: string;
+    onSetSelectedValue: Function;
+  } = $props();
 
   function setView(mode: string) {
     viewMode = mode;
@@ -67,17 +76,21 @@
       </button>
     </div>
     <div>
-      <Dropdown selectedVal={selectedVal} onSetSelectedValue={onSetSelectedValue}/>
+      <Dropdown {selectedVal} {onSetSelectedValue} />
     </div>
   </div>
 
   {#if error}
     <p>Error: {error}</p>
+  {:else if landingData.length === 0}
+    <Alert border color="blue" class="text-lg">
+      <InfoCircleSolid slot="icon" class="w-5 h-5 mr-5" />
+      <span class="font-medium">Alert!</span>
+      It seems like there is no data available!
+    </Alert>
+  {:else if viewMode === "list"}
+    <Datatable landingZones={landingData} />
   {:else}
-    {#if viewMode === "list"}
-      <Datatable landingZones={landingData} />
-    {:else}
-      <Gridview landingZones={landingData}/>
-    {/if}
+    <Gridview landingZones={landingData} />
   {/if}
 </div>

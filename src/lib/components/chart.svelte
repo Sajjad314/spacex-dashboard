@@ -136,7 +136,7 @@
   $effect(() => {
     labl = [];
     colors = [];
-    successRate = []
+    successRate = [];
     if (landingData && landingData.length > 0) {
       for (let i = 0; i < landingData.length; i++) {
         successRate.push(
@@ -148,7 +148,7 @@
         colors.push(getRandomHexColor());
       }
     }
-    
+
     options = {
       series: successRate,
       colors: colors,
@@ -234,35 +234,4 @@
   });
 </script>
 
-<Card class="border border-gray-200 rounded-xl shadow-md">
-  <div class="flex justify-between items-start w-full">
-    <div class="flex-col items-center">
-      <div class="flex items-center mb-1">
-        <h1
-          class=" m-4 font-inter text-[16px] font-semibold leading-6 text-left text-black"
-        >
-          Success Rate Chart
-        </h1>
-      </div>
-    </div>
-    <div class="flex justify-end items-center">
-      <!-- <ArrowDownToBracketOutline class="w-3.5 h-3.5" /> -->
-      <Tooltip>Download CSV</Tooltip>
-    </div>
-  </div>
-  {#if landingData.length >0 }
-    <Chart {options} class="py-6" />
-  {:else}
-  <div class="flex justify-between items-start w-full">
-    <div class="flex-col items-center">
-      <div class="flex items-center mb-1">
-        <h1
-          class=" m-4 font-inter text-[24px] font-semibold text-center leading-6  text-black"
-        >
-        No data available
-        </h1>
-      </div>
-    </div>
-  </div>
-  {/if}
-</Card>
+<Chart {options} class="py-6" />

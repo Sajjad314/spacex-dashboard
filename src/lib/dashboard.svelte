@@ -3,6 +3,7 @@
   import Map from "./components/map.svelte";
   import Chart from "./components/chart.svelte";
   import Table from "./components/table.svelte";
+  import { Card } from "flowbite-svelte";
 
   let { landingData }: { landingData: LandpadResponse[] } = $props();
   let selectedVal: string = $state("active");
@@ -20,21 +21,37 @@
   </div>
 
   <div class="w-full lg:w-1/3 flex flex-col gap-6 mt-6 lg:mt-0">
-    {#if data.length > 0}
-      <Map landingData={data} />
-      <Chart landingData={data} />
-    {:else}
-    <div class="flex justify-between items-start w-full">
-      <div class="flex-col items-center">
-        <div class="flex items-center mb-1">
-          <h1
-            class=" m-4 font-inter text-[24px] font-semibold text-center leading-6  text-black"
-          >
+    <Card class="p-0">
+      <h1
+        class=" m-4 font-inter text-lg font-semibold leading-6 text-left text-gray-900"
+      >
+        Map View
+      </h1>
+      {#if data.length === 0}
+        <h1
+          class="font-inter text-xl font-semibold text-center leading-6 text-gray-400 py-20"
+        >
           No data available
-          </h1>
-        </div>
-      </div>
-    </div>
-    {/if}
+        </h1>
+      {:else}
+        <Map landingData={data} />
+      {/if}
+    </Card>
+    <Card class="p-0">
+      <h1
+        class=" m-4 font-inter text-lg font-semibold leading-6 text-left text-gray-900"
+      >
+        Success Rate Chart
+      </h1>
+      {#if data.length === 0}
+        <h1
+          class="font-inter text-xl font-semibold text-center leading-6 text-gray-400 py-20"
+        >
+          No data available
+        </h1>
+      {:else}
+        <Chart landingData={data} />
+      {/if}
+    </Card>
   </div>
 </div>

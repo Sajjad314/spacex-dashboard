@@ -45,7 +45,7 @@
   });
 </script>
 
-<Table class="border border-gray-200 rounded-lg max-w-full">
+<Table class="border border-gray-200 rounded-lg max-w-full overflow-x-auto">
   <TableHead class="bg-gray-50 text-gray-500">
     <TableHeadCell>FULL NAME</TableHeadCell>
     <TableHeadCell>LOCATION NAME</TableHeadCell>

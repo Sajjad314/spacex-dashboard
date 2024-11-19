@@ -65,7 +65,7 @@
     });
 
     const extent = vectorSource.getExtent();
-    if (!extent.every((value) => isFinite(value))) return; 
+    if (!extent.every((value) => isFinite(value))) return;
 
     if (locations.length === 1) {
       const [lon, lat] = [locations[0].longitude, locations[0].latitude];
@@ -100,26 +100,7 @@
   });
 </script>
 
-<div class="border border-gray-200 rounded-xl shadow-md">
-  <h1 class="m-4 font-inter text-[16px] font-semibold leading-6 text-left">
-    Map View
-  </h1>
-  {#if landingData.length > 0}
-    <div id="map"></div>
-  {:else}
-    <div class="flex justify-between items-start w-full">
-      <div class="flex-col items-center">
-        <div class="flex items-center mb-1">
-          <h1
-            class=" m-4 font-inter text-[24px] font-semibold text-center leading-6 text-black"
-          >
-            No data available
-          </h1>
-        </div>
-      </div>
-    </div>
-  {/if}
-</div>
+<div id="map"></div>
 
 <style>
   #map {
