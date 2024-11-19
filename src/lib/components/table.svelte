@@ -5,7 +5,7 @@
   import Datatable from "../components/datatable.svelte";
   import { onMount } from "svelte";
   import Gridview from "../components/gridview.svelte";
-  import type { LandpadResponse } from "../interface/LandpadResponse";
+  import type { LandpadResponse } from "../../interface/LandpadResponse";
   let error = "";
   let viewMode = $state("list");
 

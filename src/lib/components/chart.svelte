@@ -251,6 +251,19 @@
       <Tooltip>Download CSV</Tooltip>
     </div>
   </div>
-
-  <Chart {options} class="py-6" />
+  {#if landingData.length >0 }
+    <Chart {options} class="py-6" />
+  {:else}
+  <div class="flex justify-between items-start w-full">
+    <div class="flex-col items-center">
+      <div class="flex items-center mb-1">
+        <h1
+          class=" m-4 font-inter text-[24px] font-semibold text-center leading-6  text-black"
+        >
+        No data available
+        </h1>
+      </div>
+    </div>
+  </div>
+  {/if}
 </Card>

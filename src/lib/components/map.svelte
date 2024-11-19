@@ -9,7 +9,7 @@
   import { Vector as VectorLayer } from "ol/layer";
   import VectorSource from "ol/source/Vector";
   import { Style, Circle, Fill } from "ol/style";
-  import type { LandpadResponse } from "../interface/LandpadResponse";
+  import type { LandpadResponse } from "../../interface/LandpadResponse";
 
   let { landingData }: { landingData: LandpadResponse[] } = $props();
 
@@ -23,21 +23,21 @@
   let vectorSource: VectorSource;
 
   // Reactive block to update locations whenever landingData changes
-  $effect(()=>{
+  $effect(() => {
     if (landingData && landingData.length > 0) {
-    locations = landingData.map((item) => ({
-      name: item.full_name,
-      latitude: item.latitude,
-      longitude: item.longitude,
-      status: item.status,
-    }));
+      locations = landingData.map((item) => ({
+        name: item.full_name,
+        latitude: item.latitude,
+        longitude: item.longitude,
+        status: item.status,
+      }));
 
-    // If vectorSource is initialized, update the map
-    if (vectorSource) {
-      updateFeatures();
+      // If vectorSource is initialized, update the map
+      if (vectorSource) {
+        updateFeatures();
+      }
     }
-  }
-  })
+  });
 
   // Function to update features on the map
   function updateFeatures() {
@@ -112,7 +112,21 @@
   <h1 class="m-4 font-inter text-[16px] font-semibold leading-6 text-left">
     Map View
   </h1>
-  <div id="map"></div>
+  {#if landingData.length > 0}
+    <div id="map"></div>
+  {:else}
+    <div class="flex justify-between items-start w-full">
+      <div class="flex-col items-center">
+        <div class="flex items-center mb-1">
+          <h1
+            class=" m-4 font-inter text-[24px] font-semibold text-center leading-6 text-black"
+          >
+            No data available
+          </h1>
+        </div>
+      </div>
+    </div>
+  {/if}
 </div>
 
 <style>

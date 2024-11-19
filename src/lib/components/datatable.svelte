@@ -9,7 +9,7 @@
     Modal
   } from "flowbite-svelte";
   import { LinkOutline } from "flowbite-svelte-icons";
-  import type { LandpadResponse } from "../interface/LandpadResponse";
+  import type { LandpadResponse } from "../../interface/LandpadResponse";
   import { onMount } from "svelte";
   
   export let landingZones: LandpadResponse[];
@@ -17,23 +17,19 @@
   let showModal = false;
   let selectedLandingZone: LandpadResponse | null = null;
 
-  // Function to open modal and set the selected landing zone
   function openModal(zone: LandpadResponse) {
     selectedLandingZone = zone;
     showModal = true;
   }
 
-  // Function to close modal
   function closeModal() {
     showModal = false;
     selectedLandingZone = null;
   }
 
-  // Handle modal being appended to the body
   onMount(() => {
     const body = document.querySelector("body");
     if (body) {
-      // When the modal is opened, add a class to the body to prevent scrolling
       if (showModal) {
         body.style.overflow = "hidden";
       } else {
@@ -41,16 +37,16 @@
       }
     }
 
-    // Cleanup when the component is destroyed or modal is closed
     return () => {
       if (body) {
-        body.style.overflow = "auto"; // Ensure scrolling is restored when modal is closed
+        body.style.overflow = "auto";
       }
     };
   });
 </script>
 
-<Table class="border border-gray-200 rounded-lg">
+<!-- Table Section with Responsive Width -->
+<Table class="border border-gray-200 rounded-lg max-w-full">
   <TableHead class="bg-gray-50 text-gray-500">
     <TableHeadCell>FULL NAME</TableHeadCell>
     <TableHeadCell>LOCATION NAME</TableHeadCell>
@@ -117,10 +113,9 @@
   </TableBody>
 </Table>
 
-<!-- Modal: Rendered at the Body Level -->
 {#if showModal && selectedLandingZone}
   <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-lg w-[640px] min-h-[380px] relative">
+    <div class="bg-white rounded-lg w-full max-w-[640px] min-h-[380px] relative">
       <!-- svelte-ignore a11y_consider_explicit_label -->
       <button
         class="absolute top-6 right-4 text-gray-500 hover:text-gray-800"
