@@ -4,14 +4,20 @@
     ChevronDownOutline,
     AdjustmentsVerticalOutline,
   } from "flowbite-svelte-icons";
-  let dropdownValue = "active";
+  // let dropdownValue = $state("active");
 
   function capitalizeFirstLetter(str:string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
   let dropdownOption = ["active", "retired", "under construction"]
-  console.log(dropdownValue);
+  let {selectedVal,onSetSelectedValue} : {selectedVal:string;onSetSelectedValue:Function} = $props();
+  let sv = $state(selectedVal);
+
+  $effect(()=>{
+    onSetSelectedValue(sv)
+    
+  })
   
 </script>
 
@@ -25,7 +31,7 @@
     <Dropdown class="p-3 space-y-1 border border-gray-200 bg-white shadow-lg rounded-md">
       {#each dropdownOption as option}
       <li class="flex items-center rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
-        <Radio name="group2" bind:group={dropdownValue} value={option} class="mr-2" />
+        <Radio name={sv} bind:group={sv} value={option} class="mr-2" />
         <span class=" font-medium text-lg">{capitalizeFirstLetter(option)}</span>
       </li>
       {/each}

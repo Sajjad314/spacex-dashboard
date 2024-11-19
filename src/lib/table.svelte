@@ -7,9 +7,9 @@
   import Gridview from "../components/gridview.svelte";
   import type { LandpadResponse } from "../interface/LandpadResponse";
   let error = "";
-  let viewMode = "list";
+  let viewMode = $state("list");
 
-  let {landingData, setSelectedVal} : {landingData: LandpadResponse[];setSelectedVal:Function} = $props();
+  let {landingData,selectedVal, onSetSelectedValue} : {landingData: LandpadResponse[];selectedVal:string;onSetSelectedValue:Function} = $props();
 
 
   function setView(mode: string) {
@@ -70,8 +70,7 @@
       </button>
     </div>
     <div>
-      <button onclick={()=>setSelectedVal()}>lll</button>
-      <Dropdown />
+      <Dropdown selectedVal={selectedVal} onSetSelectedValue={onSetSelectedValue}/>
     </div>
   </div>
 
